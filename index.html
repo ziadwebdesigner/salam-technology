@@ -1,0 +1,363 @@
+                                                    <!-- Ziad Abdelsalam Web Development -->
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Salam Technology | سلام تكنولوجي - شروحات ودروس عملية في الكمبيوتر والشبكات والإلكترونيات">
+    <title>Salam Technology | سلام تكنولوجي</title>
+    <style>
+        /* ألوان الموقع */
+        :root{--primary:#0b73c7;--primary-dark:#075a9e;--primary-light:#eaf5ff;--text:#102a43;--muted:#486581;--bg:#f4f9fd;--card:#ffffff;--border:#d9e7f2;--shadow:0 8px 28px rgba(15,64,96,0.08);--radius:16px;}
+        /* ضبط المقاسات */
+        *{box-sizing:border-box;}
+        /* سلوك الصفحة */
+        html{scroll-behavior:smooth;}
+        /* شكل الموقع */
+        body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.7;}
+        /* الروابط */
+        a{color:var(--primary);text-decoration:none;}
+        /* تأثير الروابط */
+        a:hover{text-decoration:underline;}
+        /* عناصر الإدخال */
+        button,input,textarea{font:inherit;}
+        /* الهيدر */
+        .site-header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,0.96);border-bottom:1px solid var(--border);backdrop-filter:blur(10px);}
+        /* محتوى الهيدر */
+        .header-inner{width:min(1180px,calc(100% - 24px));margin:0 auto;min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
+        /* اسم الموقع */
+        .brand{margin:0;font-size:clamp(21px,2.4vw,31px);color:var(--primary-dark);font-weight:800;letter-spacing:-0.3px;}
+        /* أزرار اللغة */
+        .language-switch{display:flex;align-items:center;gap:7px;direction:ltr;}
+        /* شكل زر اللغة */
+        .language-button{border:1px solid var(--border);background:#fff;color:var(--text);padding:8px 13px;border-radius:9px;cursor:pointer;font-size:14px;font-weight:700;transition:0.2s ease;}
+        /* تأثير زر اللغة */
+        .language-button:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-1px);}
+        /* اللغة المختارة */
+        .language-button.active{background:var(--primary);border-color:var(--primary);color:#fff;}
+        /* الحاوية الرئيسية */
+        .page{width:min(1180px,calc(100% - 24px));margin:0 auto;padding:18px 0 30px;}
+        /* البانر */
+        .banner-wrap{overflow:hidden;border-radius:18px;box-shadow:var(--shadow);background:#fff;margin-bottom:20px;}
+        /* صورة البانر */
+        .banner-wrap img{display:block;width:100%;height:auto;}
+        /* اللغة غير المختارة */
+        .language-content{display:none;}
+        /* اللغة المختارة */
+        .language-content.active{display:block;}
+        /* ترتيب الأقسام */
+        .content-stack{display:grid;gap:18px;}
+        /* الكروت */
+        .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;}
+        /* العناوين */
+        .card-title{margin:0 0 13px;color:var(--primary-dark);font-size:clamp(22px,2.5vw,30px);line-height:1.25;}
+        /* العناوين الفرعية */
+        .card-title.small{font-size:clamp(20px,2.2vw,26px);}
+        /* النص الرئيسي */
+        .lead{margin:8px 0;color:var(--muted);}
+        /* القوائم */
+        .section-list{margin:10px 0 0;padding-inline-start:22px;}
+        /* عناصر القوائم */
+        .section-list li{margin:4px 0;}
+        /* الفيديوهات */
+        .video-list{margin:0;padding-inline-start:22px;}
+        /* عناصر الفيديو */
+        .video-list li{margin:0 0 17px;}
+        /* آخر فيديو */
+        .video-list li:last-child{margin-bottom:0;}
+        /* رابط الفيديو */
+        .video-link{display:inline-block;margin-top:3px;}
+        /* صف الأزرار */
+        .action-row{display:flex;flex-wrap:wrap;gap:10px;}
+        /* أزرار الإجراءات */
+        .action-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:0;background:var(--primary);color:#fff;padding:10px 16px;border-radius:10px;font-weight:800;cursor:pointer;box-shadow:0 5px 15px rgba(11,115,199,0.18);transition:0.2s ease;}
+        /* تأثير الأزرار */
+        .action-button:hover{background:var(--primary-dark);color:#fff;text-decoration:none;transform:translateY(-1px);}
+        /* الأسئلة الشائعة */
+        .faq-list{display:grid;gap:10px;}
+        /* شكل السؤال */
+        details{background:#fff;border:1px solid var(--border);border-radius:11px;padding:0;overflow:hidden;}
+        /* عنوان السؤال */
+        summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:800;color:var(--text);}
+        /* علامة السؤال */
+        summary::-webkit-details-marker{display:none;}
+        /* فتح السؤال */
+        summary::after{content:"+";float:inline-end;color:var(--primary);font-size:20px;line-height:1;}
+        /* غلق السؤال */
+        details[open] summary::after{content:"−";}
+        /* إجابة السؤال */
+        details p{margin:0;padding:0 16px 15px;color:var(--muted);}
+        /* نموذج التواصل */
+        .contact-form{display:grid;gap:13px;}
+        /* الخانات */
+        .field{display:grid;gap:7px;}
+        /* عناوين الخانات */
+        .field label{font-weight:800;color:var(--text);}
+        /* حقول الفورم */
+        .field input,.field textarea{width:100%;border:1px solid #cbdceb;background:#fbfdff;color:var(--text);border-radius:10px;padding:12px 13px;outline:none;transition:0.2s ease;}
+        /* عند الكتابة */
+        .field input:focus,.field textarea:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(11,115,199,0.10);background:#fff;}
+        /* مربع الرسالة */
+        .field textarea{min-height:135px;resize:vertical;}
+        /* زر الإرسال */
+        .submit-button{width:100%;border:0;background:var(--primary);color:#fff;padding:13px 18px;border-radius:10px;font-weight:800;cursor:pointer;transition:0.2s ease;}
+        /* تأثير زر الإرسال */
+        .submit-button:hover{background:var(--primary-dark);}
+        /* التواصل البديل */
+        .contact-alt{margin:14px 0 0;color:var(--muted);font-weight:700;}
+        /* الفوتر */
+        .footer{text-align:center;color:var(--muted);padding:10px 10px 0;font-size:14px;}
+        /* تنسيق الموبايل */
+        @media (max-width:700px){.header-inner{width:min(100% - 14px,1180px);min-height:60px;}.brand{font-size:18px;white-space:nowrap;}.language-button{padding:7px 9px;font-size:12px;}.page{width:min(100% - 14px,1180px);padding-top:12px;}.banner-wrap{border-radius:12px;margin-bottom:13px;}.card{padding:17px;border-radius:14px;}.card-title{font-size:22px;}.card-title.small{font-size:20px;}.section-list,.video-list{padding-inline-start:20px;}summary{padding:13px 14px;font-size:15px;}.field input,.field textarea{font-size:16px;}}
+        /* الشاشات الصغيرة */
+        @media (max-width:420px){.header-inner{gap:8px;}.brand{font-size:15px;}.language-switch{gap:4px;}.language-button{padding:6px 7px;font-size:11px;border-radius:8px;}}
+    </style>
+                                                        <!-- Ziad Abdelsalam Web Development -->
+
+</head>
+<body dir="rtl">
+    <!-- الهيدر وتغيير اللغة -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="language-switch" aria-label="Language selector">
+                <button class="language-button active" id="arBtn" type="button" onclick="setLanguage('ar')">
+                    العربية
+                </button>
+                <button class="language-button" id="enBtn" type="button" onclick="setLanguage('en')">
+                    English
+                </button>
+            </div>
+            <div class="brand" id="brandName">
+                سلام تكنولوجي
+            </div>
+        </div>
+    </header>
+    <main class="page">
+        <!-- البانر -->
+        <div class="banner-wrap">
+            <a href="index.html">
+                <img src="banner.png" alt="Salam Technology Banner">
+            </a>
+        </div>
+        <!-- المحتوى العربي -->
+        <section id="arabicContent" class="language-content active" dir="rtl">
+            <div class="content-stack">
+                <section class="card">
+                    <h1 class="card-title">سلام تكنولوجي</h1>
+                    <h2 class="card-title small">مرحباً بكم في الموقع الرسمي لقناة سلام تكنولوجي</h2>
+                    <p class="lead"><b>شروحات ودروس عملي في الكمبيوتر والشبكات والإلكترونيات</b></p>
+                </section>
+                <section class="card">
+                    <h2 class="card-title small">عن سلام تكنولوجي</h2>
+                    <p>سلام تكنولوجي هي قناة تعليمية تقنية أسسها د. عبد السلام محمود.</p>
+                    <p>تهدف إلى مساعدة الطلاب والمهتمين بالتكنولوجيا على تعلم علوم الحاسب، الشبكات، والهاردوير.</p>
+                </section>
+                <section class="card">
+                    <h2 class="card-title small">ما نقدمه</h2>
+                    <p>شروحات ودروس عملي في الكمبيوتر والشبكات والإلكترونيات</p>
+                    <ul class="section-list">
+                        <li>علوم الحاسب والشبكات</li>
+                        <li>دليل شراء اللابتوب ومكونات الكمبيوتر</li>
+                        <li>البرامج والشروحات العملية</li>
+                    </ul>
+                </section>
+                <section class="card">
+                    <h2 class="card-title small">قناة سلام تكنولوجي</h2>
+                    <div class="action-row">
+                        <a class="action-button" href="https://www.youtube.com/@salam.technology" target="_blank" rel="noopener noreferrer">
+                            🔴 زيارة القناة على يوتيوب (اضغط هنا)
+                        </a>
+                    </div>
+                </section>
+                                                                    <!-- Ziad Abdelsalam Web Development -->
+
+                <section class="card">
+                    <h2 class="card-title small">الفيديوهات الأكثر مشاهدة</h2>
+                    <ul class="video-list">
+                        <li>
+                            <b>أهم 7 برامج لاختبار أي لاب توب قبل ما تشتريه</b><br>
+                            <a class="video-link" href="https://youtu.be/ISzSNJY9vFw?si=oRo3ZfM5pfnBDRo-" target="_blank" rel="noopener noreferrer">(شاهد الفيديو على يوتيوب)</a>
+                        </li>
+                        <li>
+                            <b>تصدير المراجع المكتوبة يدوياً من Word إلى EndNote</b><br>
+                            <a class="video-link" href="https://youtu.be/6qHv7h3QxWM?si=EHFDU2Sdm0qPskEe" target="_blank" rel="noopener noreferrer">(شاهد الفيديو على يوتيوب)</a>
+                        </li>
+                        <li>
+                            <b>كل ما تحتاج معرفته عن نماذج جوجل (Google Forms)</b><br>
+                            <a class="video-link" href="https://youtu.be/flCNE6kYYC8?si=i27tQJO4Qdd07EDD" target="_blank" rel="noopener noreferrer">(شاهد الفيديو على يوتيوب)</a>
+                        </li>
+                        <li>
+                            <b>حاجات مهمة لمستخدمي الكمبيوتر (مشتريات اغسطس)</b><br>
+                            <a class="video-link" href="https://youtu.be/MZynXat5D64?si=hKCHug9yueffqOwW" target="_blank" rel="noopener noreferrer">(شاهد الفيديو على يوتيوب)</a>
+                        </li>
+                        <li>
+                            <b>طريقة تحديث اللاب توب القديم</b><br>
+                            <a class="video-link" href="https://youtu.be/CUJ-gl86IQ0?si=t-cr3jtORk_GpMYt" target="_blank" rel="noopener noreferrer">(شاهد الفيديو على يوتيوب)</a>
+                        </li>
+                    </ul>
+                </section>
+                <section class="card">
+                    <h2 class="card-title small">أسئلة شائعة ❓</h2>
+                    <div class="faq-list">
+                        <details>
+                            <summary>ما هي المجالات التي تقدمها قناة سلام تكنولوجي؟</summary>
+                            <p>نقدم شروحات متخصصة في الهاردوير، صيانة اللابتوب، الشبكات، والسوفتوير.</p>
+                        </details>
+                        <details>
+                            <summary>إزاي أختار اللابتوب المناسب لميزانيتي واستخدامي؟</summary>
+                            <p>فيه فيديوهات ودليل شراء كامل على القناة بيوضح مواصفات كل فئة سعرية وإزاي تفحص الجهاز كويس قبل ما تشتريه.</p>
+                        </details>
+                        <details>
+                            <summary>هل فيه تواصل مباشر لو عندي مشكلة في جهازي؟</summary>
+                            <p>أيوة، تقدر تبعت استفسارك من خلال نموذج "تواصل معنا" أو عن طريق الواتساب على طول عبر رقم 01551050507</p>
+                        </details>
+                        <details>
+                            <summary>هل الشروحات مناسبة للمبتدئين ولا للمحترفين بس؟</summary>
+                            <p>المحتوى متدرج ومناسب للكل، من أول الأساسيات وتبسيط المفاهيم لحد الشروحات المتقدمة في الهاردوير والشبكات.</p>
+                        </details>
+                    </div>
+                </section>
+                                                                    <!-- Ziad Abdelsalam Web Development -->
+
+                <section class="card" id="contact-ar">
+                    <h2 class="card-title small">تواصل معنا ✉️</h2>
+                    <form class="contact-form" action="https://formsubmit.co/abdelsalam404@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="شكوى أو استفسار جديد من موقع سلام تكنولوجي">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        <div class="field">
+                            <label for="username_ar">الاسم:</label>
+                            <input type="text" id="username_ar" name="name" placeholder="اكتب اسمك هنا" required>
+                        </div>
+                        <div class="field">
+                            <label for="email_ar">البريد الإلكتروني:</label>
+                            <input type="email" id="email_ar" name="email" placeholder="example@gmail.com" required>
+                        </div>
+                        <div class="field">
+                            <label for="message_ar">رسالتك أو استفسارك:</label>
+                            <textarea id="message_ar" name="message" placeholder="اكتب استفسارك بالتفصيل هنا..." required></textarea>
+                        </div>
+                        <button class="submit-button" type="submit">🚀 إرسال الرسالة</button>
+                    </form>
+                    <p class="contact-alt">أو يمكنكم التواصل السريع والمباشر عبر:</p>
+                    <a class="action-button" href="https://wa.me/201551050500" target="_blank" rel="noopener noreferrer">
+                        💬 تواصل عبر واتساب (01551050500)
+                    </a>
+                </section>
+            </div>
+        </section>
+        <!-- المحتوى الإنجليزي -->
+        <section id="englishContent" class="language-content" dir="ltr">
+            <div class="content-stack">
+                <section class="card">
+                    <h1 class="card-title">Salam Technology</h1>
+                    <h2 class="card-title small">Welcome to the Official Website of Salam Technology</h2>
+                    <p class="lead"><b>Computer Science, Networking, and Electronics Tutorials</b></p>
+                </section>
+                <section class="card">
+                    <h2 class="card-title small">About Salam Technology</h2>
+                    <p>Salam Technology is an educational tech channel founded by Dr. Abdelsalam Mahmoud.</p>
+                    <p>The channel helps students and tech enthusiasts learn computer science, networking, and hardware.</p>
+                </section>
+                <section class="card">
+                    <h2 class="card-title small">What We Offer</h2>
+                    <p>Computer Science, Networking, and Electronics Tutorials</p>
+                    <ul class="section-list">
+                        <li>Computer Science &amp; Networking</li>
+                        <li>Laptop &amp; Hardware Buying Guides</li>
+                        <li>Software &amp; Practical Tutorials</li>
+                    </ul>
+                </section>
+                <section class="card">
+                    <h2 class="card-title small">Salam Technology Channel</h2>
+                    <div class="action-row">
+                        <a class="action-button" href="https://www.youtube.com/@salam.technology" target="_blank" rel="noopener noreferrer">
+                            🔴 Visit Channel on YouTube (Click Here)
+                        </a>
+                    </div>
+                </section>
+                                                                    <!-- Ziad Abdelsalam Web Development -->
+
+                <section class="card">
+                    <h2 class="card-title small">Popular Videos</h2>
+                    <ul class="video-list">
+                        <li>
+                            <b>Top 7 Software Programs to Test Any Laptop Before Buying</b><br>
+                            <a class="video-link" href="https://youtu.be/ISzSNJY9vFw?si=oRo3ZfM5pfnBDRo-" target="_blank" rel="noopener noreferrer">(Watch Video on YouTube)</a>
+                        </li>
+                        <li>
+                            <b>Exporting Handwritten References from Word to EndNote</b><br>
+                            <a class="video-link" href="https://youtu.be/6qHv7h3QxWM?si=EHFDU2Sdm0qPskEe" target="_blank" rel="noopener noreferrer">(Watch Video on YouTube)</a>
+                        </li>
+                        <li>
+                            <b>Everything You Need to Know About Google Forms</b><br>
+                            <a class="video-link" href="https://youtu.be/flCNE6kYYC8?si=i27tQJO4Qdd07EDD" target="_blank" rel="noopener noreferrer">(Watch Video on YouTube)</a>
+                        </li>
+                        <li>
+                            <b>Important Purchases for Computer Users (August Purchases)</b><br>
+                            <a class="video-link" href="https://youtu.be/MZynXat5D64?si=hKCHug9yueffqOwW" target="_blank" rel="noopener noreferrer">(Watch Video on YouTube)</a>
+                        </li>
+                        <li>
+                            <b>How to Upgrade an Old Laptop</b><br>
+                            <a class="video-link" href="https://youtu.be/CUJ-gl86IQ0?si=t-cr3jtORk_GpMYt" target="_blank" rel="noopener noreferrer">(Watch Video on YouTube)</a>
+                        </li>
+                    </ul>
+                </section>
+                <section class="card">
+                    <h2 class="card-title small">Frequently Asked Questions ❓</h2>
+                    <div class="faq-list">
+                        <details>
+                            <summary>What fields does Salam Technology channel cover?</summary>
+                            <p>We provide specialized tutorials in hardware, laptop repair, networking, and software.</p>
+                        </details>
+                        <details>
+                            <summary>How do I choose the right laptop for my budget and usage?</summary>
+                            <p>There are videos and buying guides on the channel explaining specs for every price range and how to test laptops before buying.</p>
+                        </details>
+                        <details>
+                            <summary>Is there direct contact if I have an issue with my device?</summary>
+                            <p>Yes, you can send your inquiry through the "Contact Us" form or directly via WhatsApp at 01551050507.</p>
+                        </details>
+                        <details>
+                            <summary>Are the tutorials suitable for beginners or only professionals?</summary>
+                            <p>The content is progressive and suitable for everyone, starting from basic concepts up to advanced hardware and networking tutorials.</p>
+                        </details>
+                    </div>
+                </section>
+                <section class="card" id="contact-en">
+                    <h2 class="card-title small">Contact Us ✉️</h2>
+                    <form class="contact-form" action="https://formsubmit.co/abdelsalam404@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="New Complaint or Inquiry from Salam Technology Website">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        <div class="field">
+                            <label for="username_en">Name:</label>
+                            <input type="text" id="username_en" name="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="field">
+                            <label for="email_en">Email:</label>
+                            <input type="email" id="email_en" name="email" placeholder="example@gmail.com" required>
+                        </div>
+                        <div class="field">
+                            <label for="message_en">Your Message or Inquiry:</label>
+                            <textarea id="message_en" name="message" placeholder="Type your inquiry in detail..." required></textarea>
+                        </div>
+                        <button class="submit-button" type="submit">🚀 Send Message</button>
+                    </form>
+                    <p class="contact-alt">Or contact us directly via:</p>
+                    <a class="action-button" href="https://wa.me/201551050500" target="_blank" rel="noopener noreferrer">
+                        💬 Contact via WhatsApp (01551050500)
+                    </a>
+                </section>
+            </div>
+        </section>
+        <footer class="footer">
+            جميع الحقوق محفوظة لقناة <b>Salam Technology</b> © 2026 | All Rights Reserved<br>
+            تم تصميم الهيكل بواسطة: <b>زياد عبد السلام</b> 🚀
+        </footer>
+    </main>
+    <!-- كود تغيير اللغة -->
+    <script>function setLanguage(language) { const arContent = document.getElementById("arabicContent"); const enContent = document.getElementById("englishContent"); const arBtn = document.getElementById("arBtn"); const enBtn = document.getElementById("enBtn"); const brandName = document.getElementById("brandName"); if (language === "en") { document.documentElement.lang = "en"; document.body.dir = "ltr"; arContent.classList.remove("active"); enContent.classList.add("active"); arBtn.classList.remove("active"); enBtn.classList.add("active"); brandName.textContent = "Salam Technology"; localStorage.setItem("salamLanguage", "en"); } else { document.documentElement.lang = "ar"; document.body.dir = "rtl"; enContent.classList.remove("active"); arContent.classList.add("active"); enBtn.classList.remove("active"); arBtn.classList.add("active"); brandName.textContent = "سلام تكنولوجي"; localStorage.setItem("salamLanguage", "ar"); } } document.addEventListener("DOMContentLoaded", function () { const savedLanguage = localStorage.getItem("salamLanguage") || "ar"; setLanguage(savedLanguage); });</script>
+</body>
+</html>
+                                                    <!-- Ziad Abdelsalam Web Development -->
